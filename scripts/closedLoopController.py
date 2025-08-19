@@ -82,7 +82,7 @@ class ClosedLoopController(BaseController):
         # control
         if self.guiNode.controlMode.value == ControlMode["State Feedback"]:
             if not self.useObserver:
-                fullState = np.vstack([self.legPos, self.legVel])
+                fullState = np.vstack([self.legVel, self.legPos])
                 state4Control = self.R.T @ fullState
             desiredMotorPos = ( self.G @ self.reference - self.K @ state4Control).flatten()
             self.motor.position.value = desiredMotorPos[0]

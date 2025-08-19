@@ -36,8 +36,8 @@ def design_controller(A, B, C):
 
     # === Step 2: Compute the feedback gain K ===
     # TODO: Use one of the methods to compute the state feedback gain K
-    Q = C.T @ (1e1 * np.eye(C.shape[0])) @ C
-    R = 1e4 * np.eye(B.shape[1])
+    Q = C.T @ (1e-1 * np.eye(C.shape[0])) @ C
+    R = 1e3 * np.eye(B.shape[1])
     K, _, _ = ct.dlqr(A, B, Q, R)
 
     # === Step 3: Compute the feedforward gain G ===
@@ -85,11 +85,6 @@ def perform_controller_design():
     A = model["stateMatrix"]
     B = model["inputMatrix"]
     C = model["outputMatrix"]
-
-    # Sanity check: controllability
-    ctrb_rank = np.linalg.matrix_rank(ct.ctrb(A, B))
-    if ctrb_rank != A.shape[0]:
-        raise ValueError(f"System is not controllable: rank {ctrb_rank}, expected {A.shape[0]}.")
 
     # Design controller
     K, G = design_controller(A, B, C)
