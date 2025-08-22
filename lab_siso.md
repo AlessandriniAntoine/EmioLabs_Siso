@@ -20,7 +20,7 @@ This lab relies on linear algebra and control theory. It is recommended to check
 In this lab session, we will use only the following configuration: Emio with one <span style="color:rgba(200, 200, 0, 1);">*yellow leg*</span>,
 the <span style="color:grey">*grey mass*</span>, and the <span style="color:green">*green marker*</span>. We also use the **FEM** modeling of the leg to simulate the dynamics of the system.
 
-![](assets/data/images/lab5-setup-emio.png){width=75% .center}
+![](assets/data/images/labSiso-setup-emio.png){width=75% .center}
 :::
 
 
@@ -42,7 +42,7 @@ where $s(k)$ is the filtered signal at time step $k$, $u(k)$ is the signal at ti
 To excite the system in a way that is informative for model identification, it is recommended to apply inputs drawn from a normal distribution, resulting in a pseudo-random motion of the motor. To further enrich the data, random noise is also added to the input commands.
 
 The final open loop control structure is as follows:
-|  ![](assets/data/images/lab5-openloop-structure.png)   |
+|  ![](assets/data/images/labSiso-openloop-structure.png)   |
 |:------------------------------------------------:|
 | **Open loop control structure** |
 

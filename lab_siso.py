@@ -50,7 +50,7 @@ def arg_parse():
                         default='1.57', dest="motorMax")
     parser.add_argument('-mn', '--motorMin', type=str,
                         help="Minimum values for the motors (in radians). ",
-                        default='-1.57', dest="motorMin")
+                        default='1.57', dest="motorMin")
     parser.add_argument("--motorCutoffFreq", type=str,
                         help="Motor cutoff frequency",
                         default='30.', dest="motorCutoffFreq")
@@ -64,9 +64,6 @@ def arg_parse():
     parser.add_argument('--useObserver', type=str,
                         help="Specify the order of the reduction",
                         default='1', dest="useObserver")
-    parser.add_argument('--no-connection', dest="connection", action='store_false',
-                        help="use when you want to run the simulation without the robot")
-
 
     try:
         args = parser.parse_args()
@@ -219,26 +216,5 @@ def createScene(rootnode):
             leg, motor, markers, load,
             motorInit, motorMin, motorMax, float(args.motorCutoffFreq),
             int(args.order), int(args.useObserver)))
-
-
-    ##############################################################################
-    # Real Emio Connection
-    ##############################################################################
-    if not args.connection:
-        print("Running simulation with connection to the real Emio robot.")
-        from parts.controllers.trackercontroller import DotTracker
-        rootnode.addObject(DotTracker(name="DotTracker",
-                                      root=rootnode,
-                                      nb_tracker=3,
-                                      show_video_feed=False,
-                                      track_colors=True,
-                                      comp_point_cloud=False,
-                                      scale=1,
-                                      rotation=camera.torealrotation,
-                                      translation=camera.torealtranslation))
-
-        from parts.controllers.motorcontroller import MotorController
-        rootnode.addObject(MotorController([motor.JointActuator.displacement, None, None, None],
-                                           name="MotorController"))
 
     return rootnode
