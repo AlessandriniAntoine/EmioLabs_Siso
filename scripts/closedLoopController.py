@@ -1,6 +1,8 @@
 from .baseController import *
 
+
 ControlMode = {"Open Loop": False, "State Feedback": True}
+
 
 class ClosedLoopController(BaseController):
     def __init__(self, leg, motor, markers, load, motorInit, motorMin, motorMax, cutoffFreq, order, useObserver=1):
@@ -22,15 +24,15 @@ class ClosedLoopController(BaseController):
         MyGui.PlottingWindow.addData("Output", self.guiNode.output)
 
         # Control and Observer data
-        model = np.load(os.path.join(data_path, "models", f"order{order}.npz"))
+        model = np.load(os.path.join(data_path, f"model_order{order}.npz"))
         self.A, self.B, self.C = model["stateMatrix"], model["inputMatrix"], model["outputMatrix"]
-        control = np.load(os.path.join(data_path, "control", f"order{order}.npz"))
+        control = np.load(os.path.join(data_path, f"controller_order{order}.npz"))
         self.K, self.G = control["feedbackGain"], control["feedForwardGain"]
         if useObserver:
-            observer = np.load(os.path.join(data_path, "control", f"order{order}_obs.npz"))
+            observer = np.load(os.path.join(data_path, f"observer_order{order}.npz"))
             self.L = observer["observerGain"]
         else:
-            reduction = np.load(os.path.join(data_path, "reduction", f"order{order}.npz"))
+            reduction = np.load(os.path.join(data_path, f"reduction_order{order}.npz"))
             self.R = reduction["reductionMatrix"]
 
         # add mechanical object for reference
@@ -118,7 +120,7 @@ class ClosedLoopController(BaseController):
     def save(self):
         print("Saving data...")
         np.savez(
-            os.path.join(data_path, "sofa", "closedLoop.npz"),
+            os.path.join(data_path, "sofa_closedLoop.npz"),
             legVel=np.array(self.legVelList).reshape(len(self.legVelList), self.legVelList[0].shape[0]),
             legPos=np.array(self.legPosList).reshape(len(self.legPosList), self.legPosList[0].shape[0]),
             markersPos=np.array(self.markersPosList).reshape(len(self.markersPosList), self.markersPosList[0].shape[0]),

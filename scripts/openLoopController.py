@@ -1,5 +1,6 @@
 from .baseController import *
 
+
 class OpenLoopController(BaseController):
     def __init__(self, leg, motor, markers, load, motorInit, motorMin, motorMax, cutoffFreq):
         super().__init__(leg, motor, markers, load, motorInit, motorMin, motorMax, cutoffFreq)
@@ -31,7 +32,7 @@ class OpenLoopController(BaseController):
     def save(self):
         print("Saving data...")
         np.savez(
-            os.path.join(data_path, "sofa", "openLoop.npz"),
+            os.path.join(data_path, "sofa_openLoop.npz"),
             legVel=np.array(self.legVelList).reshape(len(self.legVelList), self.legVelList[0].shape[0]),
             legPos=np.array(self.legPosList).reshape(len(self.legPosList), self.legPosList[0].shape[0]),
             markersPos=np.array(self.markersPosList).reshape(len(self.markersPosList), self.markersPosList[0].shape[0]),

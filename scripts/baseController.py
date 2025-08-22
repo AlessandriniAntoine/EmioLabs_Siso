@@ -6,12 +6,7 @@ import Sofa.ImGui as MyGui
 
 lab_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(lab_path, "data")
-sofa_path = os.path.join(data_path, "sofa")
-if not os.path.exists(sofa_path):
-    os.makedirs(os.path.join(data_path, "sofa"))
-    os.makedirs(os.path.join(data_path, "reduction"))
-    os.makedirs(os.path.join(data_path, "models"))
-    os.makedirs(os.path.join(data_path, "control"))
+
 
 class BaseController(Sofa.Core.Controller):
     def __init__(self, leg, motor, markers, load, motorInit, motorMin, motorMax, cutoffFreq):
