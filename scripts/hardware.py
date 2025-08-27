@@ -212,6 +212,8 @@ def processCamera(trackerPos, event):
         compute_point_cloud=False,
         parameter=json_parameters)
     camera.set_fps(60)
+    camera.set_depth_max(800)
+    camera.set_depth_min(0)
     camera.open()
 
     while True:

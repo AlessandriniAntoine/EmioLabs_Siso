@@ -14,9 +14,9 @@ class ClosedLoopController(BaseController):
         self.guiNode.addData(name="reference", type="float", value=0.)
         self.guiNode.addData(name="output", type="float", value=0.)
         self.guiNode.addData(name="controlMode", type="bool", value=ControlMode["Open Loop"])
-        MyGui.MyRobotWindow.addSettingInGroup("Reference", self.guiNode.reference, -50, 50, "Control Law")
+        MyGui.MyRobotWindow.addSettingInGroup("Reference (mm)", self.guiNode.reference, -50, 50, "Control Law")
         if useObserver:
-            MyGui.MyRobotWindow.addSettingInGroup("Observer Noise", self.guiNode.noise, 0, 1, "Control Law")
+            MyGui.MyRobotWindow.addSettingInGroup("Observer Noise (mm)", self.guiNode.noise, 0, 3, "Control Law")
         MyGui.MyRobotWindow.addSettingInGroup("Control Mode", self.guiNode.controlMode, 0, 1, "Buttons")
 
         # Plotting data
@@ -87,11 +87,11 @@ class ClosedLoopController(BaseController):
                 fullState = np.vstack([self.legVel, self.legPos])
                 state4Control = self.R.T @ fullState
             desiredMotorPos = ( self.G @ self.reference - self.K @ state4Control).flatten()
-            self.motor.position.value = desiredMotorPos[0]
+            self.motor.position.value = desiredMotorPos[0]*1e2
         else:
             desiredMotorPos = self.currentMotorPos.copy()
             if self.guiNode.active.value:
-                desiredMotorPos[0] = self.motor.position.value
+                desiredMotorPos[0] = self.motor.position.value*1e-2
 
         self.command = self.filter(
             desiredMotorPos, self.command,

@@ -65,6 +65,8 @@ def arg_parse():
                         help="Specify the order of the reduction",
                         default='1', dest="useObserver")
 
+    parser.add_argument('--no-connection', dest="connection", action='store_false',
+                        help="use when you want to run the simulation without the robot")
     try:
         args = parser.parse_args()
     except SystemExit:
@@ -216,5 +218,26 @@ def createScene(rootnode):
             leg, motor, markers, load,
             motorInit, motorMin, motorMax, float(args.motorCutoffFreq),
             int(args.order), int(args.useObserver)))
+
+    if args.connection:
+        # Add RealSense camera tracker
+        try:
+            from parts.controllers.motorcontroller import MotorController
+            from parts.controllers.trackercontroller import DotTracker
+            rootnode.addObject(MotorController([motor.JointActuator.displacement, None, None, None],
+                                            name="MotorController"))
+
+            tracker = DotTracker(name="DotTracker",
+                                 root=rootnode,
+                                 configuration="extended",
+                                 nb_tracker=2,
+                                 show_video_feed=False,
+                                 track_colors=True,
+                                 comp_point_cloud=False,
+                                 scale=1)
+
+            rootnode.addObject(tracker)
+        except RuntimeError:
+            Sofa.msg_error(__file__, "Camera not detected")
 
     return rootnode

@@ -43,7 +43,7 @@ class BaseController(Sofa.Core.Controller):
 
 
     def setup_gui(self):
-        MyGui.MyRobotWindow.addSettingInGroup("Motor", self.motor.position, self.motorMin, self.motorMax, "Motor Movement")
+        MyGui.MyRobotWindow.addSettingInGroup("Motor (rad/100)", self.motor.position, self.motorMin*1e2, self.motorMax*1e2, "Motor Movement")
 
         self.guiNode.addData(name="force", type="float", value=0.)
         self.guiNode.addData(name="record", type="bool", value=False)
