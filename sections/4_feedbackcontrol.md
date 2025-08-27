@@ -7,6 +7,11 @@ Based on the identified linear model, we can implement a state feedback controll
 $$ u = Gr - Kx $$
 where $r$ is the reference signal that the controlled output should track.
 
+The block diagram of the state feedback control system is shown below:
+|  ![](assets/data/images/labSiso-feedback-structure.png)   |
+|:------------------------------------------------:|
+| **State feedback control structure** |
+
 This results in the following closed-loop dynamics:
 $$ x^+ = (A-BK)x + BGr$$
 

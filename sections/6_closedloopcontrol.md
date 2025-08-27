@@ -10,6 +10,11 @@ $$u = Gr - K\hat{x}$$
 
 where $\hat{x}$ is the estimated state from the observer, and $r$ is the reference for the controlled output.
 
+The overall structure of the closed-loop control system is shown below:
+|  ![](assets/data/images/labSiso-feedback-observer-structure.png)   |
+|:------------------------------------------------:|
+| **State feedback with observer structure** |
+
 The simulation loop proceeds as follows:
 
 - Initialize the estimated state $\hat{x}$.

@@ -11,6 +11,11 @@ To do this, we implement a Luenberger observer based on measurements of the mark
 $$\hat{x}^+ = A\hat{x} + Bu + L(y - \hat{y})$$
 where $\hat{x}$ is the estimated state, $y$ is the measured output, and $\hat{y}=C\hat{x}$ is the predicted output from the estimated state.
 
+The block diagram of the observer is shown below:
+|  ![](assets/data/images/labSiso-observer-structure.png)   |
+|:------------------------------------------------:|
+| **Observer structure** |
+
 To analyze the convergence of the observer, we define the estimation error $e=x-\hat{x}$. The error dynamics become:
 
 $$\begin{array}{rcl} e^+ &=& x^+ - \hat{x}^+ \\&=& Ax + Bu - A\hat{x} - Bu - L(y - \hat{y}) \\ &=& A(x - \hat{x}) - LC(x - \hat{x}) \\ &=& (A - LC)(x - \hat{x}) \\ e^+ &=& (A - LC)e \end{array}$$
