@@ -65,7 +65,8 @@ class ClosedLoopController(BaseController):
 
         if self.guiNode.active.value:
             self.reference = np.array([[self.guiNode.reference.value]])
-            self.refMo.position.value = np.array([[self.initRefMo[0], self.initRefMo[1], self.initRefMo[2] + self.reference[0, 0]]])
+            markersPos = self.markers.position.value.flatten()
+            self.refMo.position.value = np.array([[self.initRefMo[0], markersPos[1], self.initRefMo[2] + self.reference[0, 0]]])
 
         # control
         if self.guiNode.controlMode.value == ControlMode["State Feedback"]:
