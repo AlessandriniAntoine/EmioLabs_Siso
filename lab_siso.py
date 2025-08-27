@@ -37,11 +37,6 @@ def arg_parse():
                         help="position on motor (clockwiseup, counterclockwiseup, clockwisedown, or counterclockwisedown)",
                         default='clockwisedown', dest="legPositionOnMotor")
 
-    parser.add_argument('-fps', "--framerate", type=str,
-                        help="Scene frame rate",
-                        default='120', dest="framerate")
-
-
     parser.add_argument('-mi', '--motorInit', type=str,
                         help="Initial values for the motors (in radians). ",
                         default='0.', dest="motorInit")
@@ -99,7 +94,7 @@ def createScene(rootnode):
     ##############################################################################
     # Parameters
     ##############################################################################
-    dt = 1 / float(args.framerate)
+    dt = 1 / 60
     motorInit = float(args.motorInit)
     motorMin = -float(args.motorMin)
     motorMax = float(args.motorMax)

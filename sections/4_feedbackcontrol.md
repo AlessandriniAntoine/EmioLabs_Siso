@@ -47,6 +47,6 @@ Given the linear model that you generated on the previous step, you will:
 2. Compute the feedforward matrix $G$
 #runsofa-button("assets/labs/EmioLabs_Siso/scripts/controller.py" "--order" "order")
 3. Test on Sofa to see how you can control the robot using this control law.
-#runsofa-button("assets/labs/EmioLabs_Siso/lab_siso.py" "--controller" "closedloop" "--framerate" "fps" "--motorCutoffFreq" "cutoffFreq" "--motorInit" "motorInit" "--motorMin" "motorMin" "--motorMax" "motorMax" "--order" "order" "--useObserver" "0")
+#runsofa-button("assets/labs/EmioLabs_Siso/lab_siso.py" "--controller" "closedloop" "--motorCutoffFreq" "cutoffFreq" "--motorInit" "motorInit" "--motorMin" "motorMin" "--motorMax" "motorMax" "--order" "order" "--useObserver" "0")
 ::::
 :::::

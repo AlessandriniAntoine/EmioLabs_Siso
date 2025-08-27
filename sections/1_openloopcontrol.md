@@ -40,20 +40,12 @@ Init, Min, Max (rad)
 #input("motorMax")
 
 * * *
-**Frame rate (Hz)**
-:::: select fps
-::: option 60
-::: option 120
-::: option 180
-::: option 240
-::::
-
 **Cutoff frequency (Hz)**
 #input("cutoffFreq")
 
 :::::
 
-#runsofa-button("assets/labs/EmioLabs_Siso/lab_siso.py" "--controller" "openloop" "--framerate" "fps" "--motorCutoffFreq" "cutoffFreq" "--motorInit" "motorInit" "--motorMin" "motorMin" "--motorMax" "motorMax")
+#runsofa-button("assets/labs/EmioLabs_Siso/lab_siso.py" "--controller" "openloop" "--motorCutoffFreq" "cutoffFreq" "--motorInit" "motorInit" "--motorMin" "motorMin" "--motorMax" "motorMax")
 ::::::
 
 :::::::
