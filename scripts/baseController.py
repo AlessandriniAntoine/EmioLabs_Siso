@@ -161,7 +161,7 @@ class BaseController(Sofa.Core.Controller):
         )
         command = self.currentMotorPos + motorDisplacement
         self.command_apply = np.clip(command, self.motorMin, self.motorMax)
-        self.motor.JointActuator.value.value = command[0] + self.motorInit
+        self.motor.JointActuator.value.value = self.command_apply[0] + self.motorInit
 
         self.force.forces = [[0, 0, self.guiNode.force.value * 1e2, 0, 0, 0, 0]]
         self.guiNode.force.value = 0
